@@ -7,7 +7,9 @@ const refs = {
   'http://localhost:1234/name.json': require('json-schema-test-suite/remotes/name.json'),
   'http://localhost:1234/integer.json': require('json-schema-test-suite/remotes/integer.json'),
   'http://localhost:1234/subSchemas.json': require('json-schema-test-suite/remotes/subSchemas.json'),
-  'http://localhost:1234/folder/folderInteger.json': require('json-schema-test-suite/remotes/folder/folderInteger.json'),
+  'http://localhost:1234/baseUriChange/folderInteger.json': require('json-schema-test-suite/remotes/baseUriChange/folderInteger.json'),
+  'http://localhost:1234/baseUriChangeFolder/folderInteger.json': require('json-schema-test-suite/remotes/baseUriChange/folderInteger.json'),
+  'http://localhost:1234/baseUriChangeFolderInSubschema/folderInteger.json': require('json-schema-test-suite/remotes/baseUriChange/folderInteger.json'),
   'http://json-schema.org/draft-04/schema': require('./resources/draft-04-schema.json'),
   'http://json-schema.org/draft-06/schema': require('./resources/draft-06-schema.json'),
 };
@@ -37,7 +39,7 @@ const factory = function djvTestSuiteAdapter(version) {
 function runTest(version) {
   jsonSchemaTest(factory(`draft-0${version}`), {
     description: `Test suite draft-0${version}`,
-    suites: { tests: `../node_modules/json-schema-test-suite/tests/draft${version}/{**/,}*.json` },
+    suites: { tests: `./JSON-Schema-Test-Suite/tests/draft${version}/{**/,}*.json` },
     cwd: __dirname,
     hideFolder: 'tests/',
     skip: ['optional/zeroTerminatedFloats']
